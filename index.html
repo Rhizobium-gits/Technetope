@@ -84,9 +84,17 @@
             font-size: 0.85em;
             letter-spacing: 0.1em;
             transition: color 0.3s;
+            display: flex;
+            gap: 20px;
         }
         
-        .nav-link:hover {
+        .nav-link a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-link a:hover {
             color: #e8e8e8;
         }
         
@@ -99,8 +107,6 @@
         
         section:nth-child(2) { animation-delay: 1.5s; }
         section:nth-child(3) { animation-delay: 2s; }
-        section:nth-child(4) { animation-delay: 2.5s; }
-        section:nth-child(5) { animation-delay: 3s; }
         
         h2 {
             font-size: 1.2em;
@@ -134,45 +140,6 @@
             font-size: 1.2em;
             margin-bottom: 50px;
             letter-spacing: 0.05em;
-        }
-        
-        /* テクニカル部分 */
-        .technical {
-            background: rgba(255,255,255,0.02);
-            padding: 50px 40px;
-            border-left: 1px solid #333;
-        }
-        
-        .technical h3 {
-            font-size: 0.95em;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #aaa;
-        }
-        
-        .technical p, .technical ul {
-            font-size: 0.95em;
-            color: #999;
-            line-height: 1.9;
-        }
-        
-        .technical ul {
-            list-style: none;
-            margin-top: 15px;
-        }
-        
-        .technical li {
-            padding-left: 20px;
-            position: relative;
-            margin-bottom: 10px;
-        }
-        
-        .technical li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
         }
         
         /* 引用部分 */
@@ -278,16 +245,14 @@
             
             .nav-link {
                 right: 20px;
+                flex-direction: column;
+                gap: 10px;
             }
             
             .video-container iframe {
                 width: 100%;
                 height: auto;
                 aspect-ratio: 16 / 9;
-            }
-            
-            .technical {
-                padding: 30px 20px;
             }
             
             .quote-text {
@@ -300,7 +265,10 @@
     <div class="background-dots" id="dots"></div>
     
     <div class="container">
-        <a href="artists.html" class="nav-link">Artists →</a>
+        <div class="nav-link">
+            <a href="technical.html">Technical →</a>
+            <a href="artists.html">Artists →</a>
+        </div>
         
         <header>
             <h1>Technetope</h1>
@@ -325,28 +293,6 @@
             <p>「Technetope」は、生き物のように本能的に振る舞う非生命体を通じて、"テクノロジーが生態となる瞬間"を描き出す試みである。それは自然と人工の二項対立を越え、人間・機械・環境が相互に生成し合う新たな生命観の原型を提示する。</p>
             
             <p>テクネトープは非生命体が作り出した疑似生態系であり人間たちは自由にその生態系に干渉できる。このミニ生態系は機械で制御しているが故に無限の生態系を模倣でき、新たな体験をユーザーに与えることができる。アクターネットワーク理論などをバックグラウンドとした哲学思想を持っている。</p>
-        </section>
-        
-        <section class="technical">
-            <h2>Technical Ingenuity</h2>
-            
-            <h3>Toio魔改造</h3>
-            <p>小型可動スピーカーとしてToioを改造し、群れとして動作するシステムを構築</p>
-            
-            <h3>音響制御</h3>
-            <p>各スピーカーが個別に音を発しながら、全体として調和のとれた音響空間を創出</p>
-            
-            <h3>群れの動作</h3>
-            <p>人間の座標を信号として送ることで、群として動くToioたちは自分自身の座標を認識し、その座標で回避行動を取り大きかった群は小さな群に分かれる。しかし再び近くに来るタイミングがあればその群たちは再び繋がり群となる。</p>
-            
-            <h3>視覚表現</h3>
-            <p>水面だけでなく4つのテーマにあった情景が映し出される</p>
-            <ul>
-                <li>メダカ × 湖畔</li>
-                <li>イナゴ × 草原</li>
-                <li>鴨 × 秋空</li>
-                <li>星 × 夜空</li>
-            </ul>
         </section>
         
         <section class="words">
