@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technetope</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', 'Yu Mincho', '游明朝', 'Times New Roman', serif;
+            background-color: #0a0a0a;
+            background-image: url('https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_claud3.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #e8e8e8;
+            line-height: 2;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+        }
+        
+        /* ヘッダー部分 */
+        header {
+            text-align: center;
+            margin-bottom: 120px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 4em;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
+        
+        .subtitle {
+            font-size: 0.9em;
+            letter-spacing: 0.3em;
+            color: #888;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 0.5s forwards;
+        }
+        
+        .theme {
+            margin-top: 60px;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 1s forwards;
+        }
+        
+        .video-container {
+            margin-top: 60px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 1.5s forwards;
+        }
+        
+        .video-container iframe {
+            max-width: 100%;
+            border: 1px solid #222;
+        }
+        
+        .nav-link {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.85em;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-link a:hover {
+            color: #e8e8e8;
+        }
+        
+        /* セクション */
+        section {
+            margin-bottom: 100px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+        
+        section:nth-child(2) { animation-delay: 1.5s; }
+        section:nth-child(3) { animation-delay: 2s; }
+        
+        h2 {
+            font-size: 1.2em;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: #444;
+            margin: 20px auto 0;
+        }
+        
+        .statement p {
+            margin-bottom: 30px;
+            text-align: justify;
+            text-indent: 1em;
+            font-size: 1.05em;
+            line-height: 2.2;
+        }
+        
+        .statement p:first-of-type {
+            text-indent: 0;
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            letter-spacing: 0.05em;
+        }
+        
+        /* 引用部分 */
+        .words {
+            text-align: center;
+            margin-top: 120px;
+            padding: 60px 0;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+        
+        .words-title {
+            font-size: 0.85em;
+            letter-spacing: 0.2em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .quote-main {
+            font-style: italic;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+        
+        .author {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 30px;
+            letter-spacing: 0.1em;
+        }
+        
+        .quote-text {
+            margin-top: 50px;
+            padding: 0 40px;
+            font-size: 0.95em;
+            line-height: 2.2;
+            color: #aaa;
+            text-align: justify;
+        }
+        
+        /* アニメーション */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 背景の動くドット */
+        .background-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            33% {
+                transform: translate(30px, -30px);
+            }
+            66% {
+                transform: translate(-20px, 20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 20px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .nav-link {
+                right: 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .video-container iframe {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+            
+            .quote-text {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-dots" id="dots"></div>
+    
+    <div class="container">
+        <div class="nav-link">
+            <a href="technical.html">Technical →</a>
+            <a href="artists.html">Artists →</a>
+        </div>
+        
+        <header>
+            <h1>Technetope</h1>
+            <div class="subtitle">テクネトープ</div>
+            <div class="theme">— 観客は環境の一部である —</div>
+            <div class="video-container">
+                <iframe width="800" height="450" src="https://www.youtube.com/embed/UVaZf3GliDs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </header>
+        
+        <section class="statement">
+            <h2>Statement</h2>
+            
+            <p>テクノロジーによって構築された新しい"生態系"</p>
+            
+            <p>2.4m四方の空間の中を、30台の小型可動スピーカーが群れとして動く。スピーカーは音を発しながら互いの位置と人間の座標を参照し、群れを形成・分離・再統合する。その動きは、湖面を泳ぐメダカ、草原を渡るイナゴ、空を渡る鴨、夜空の星のように、環境の変化に応答し続ける。</p>
+            
+            <p>人はただそこに"いる"——観察者でありながら、同時に生態系の一要素として作用する。</p>
+            
+            <p>小さな生物にとって、人は流れてきた障害物であり、風や波、浮き草のように回避すべき現象である。スピーカー群はその存在を本能のように察知し、分かれ、避け、再び群れを成す。そこには意図も支配もなく、ただ共存のリズムが残る。</p>
+            
+            <p>「Technetope」は、生き物のように本能的に振る舞う非生命体を通じて、"テクノロジーが生態となる瞬間"を描き出す試みである。それは自然と人工の二項対立を越え、人間・機械・環境が相互に生成し合う新たな生命観の原型を提示する。</p>
+            
+            <p>テクネトープは非生命体が作り出した疑似生態系であり人間たちは自由にその生態系に干渉できる。このミニ生態系は機械で制御しているが故に無限の生態系を模倣でき、新たな体験をユーザーに与えることができる。アクターネットワーク理論などをバックグラウンドとした哲学思想を持っている。</p>
+        </section>
+        
+        <section class="words">
+            <div class="words-title">Words of the Ancients</div>
+            
+            <div class="quote-main">
+                <em>L'homme est un roseau pensant</em><br>
+                人間は考える葦である
+            </div>
+            
+            <div class="author">Blaise Pascal (1623–1662)</div>
+            
+            <div class="quote-text">
+                人間は一本の葦にすぎない。自然のうちでもっとも弱いものである。だが、それは考える葦である。宇宙全体が武装して彼を押しつぶす必要もない。一つの蒸気、一滴の水でも彼を殺すのに十分である。しかし、宇宙が彼を押しつぶしたとしても、人間はなおそれを押しつぶすものよりも高貴である。彼は自分が死ぬことを知り、宇宙が彼にまさることを知っている。宇宙はそれを知らないのだ。
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // 背景にランダムに動くドットを生成
+        const dotsContainer = document.getElementById('dots');
+        const dotCount = 30;
+        
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.animationDelay = Math.random() * 20 + 's';
+            dot.style.animationDuration = (15 + Math.random() * 10) + 's';
+            dotsContainer.appendChild(dot);
+        }
+    </script>
+</body>
+</html>
