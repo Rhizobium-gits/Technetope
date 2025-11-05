@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artists - Technetope</title>
+    <title>Technical Ingenuity - Technetope</title>
     <style>
         * {
             margin: 0;
@@ -14,16 +14,14 @@
         body {
             font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', 'Yu Mincho', '游明朝', 'Times New Roman', serif;
             background-color: #ffffff;
-            background-image: url('https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud4.png');
+            background-image: url('https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
             color: #ffffff;
             line-height: 1.9;
-            padding: 40px 20px 40px 80px;
-            max-width: 1000px;
-            margin: 0;
+            padding: 40px 20px;
             position: relative;
         }
         
@@ -165,7 +163,7 @@
             }
         }
         
-        .logo, h1, .artist, .artist-image, .artist-content {
+        .logo, .container {
             position: relative;
             z-index: 10;
         }
@@ -191,11 +189,18 @@
             opacity: 0.6;
         }
         
+        .container {
+            max-width: 700px;
+            margin: 0;
+            margin-left: 80px;
+            padding: 80px 40px 40px 40px;
+        }
+        
         h1 {
             font-size: 2em;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             margin-top: 60px;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.05em;
             background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 50%, transparent 50%);
             background-size: 200% 100%;
@@ -214,40 +219,16 @@
             }
         }
         
-        .artist {
-            margin-bottom: 120px;
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-        }
-        
-        .artist-image {
-            flex-shrink: 0;
-            width: 200px;
-            height: 200px;
-            background: rgba(245, 245, 245, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #cccccc;
-            font-size: 0.85em;
-        }
-        
-        .artist-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .artist-content {
-            flex: 1;
+        .section {
+            margin-bottom: 50px;
+            padding-left: 30px;
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         h2 {
-            font-size: 1.5em;
-            margin-bottom: 25px;
-            font-weight: 400;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-weight: 500;
             letter-spacing: 0.03em;
             background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 50%, transparent 50%);
             background-size: 200% 100%;
@@ -257,8 +238,8 @@
             animation: typewriterMarker 0.6s ease-out 2.2s forwards;
         }
         
-        .bio {
-            margin-bottom: 30px;
+        p {
+            margin-bottom: 15px;
             font-size: 0.95em;
             line-height: 2;
             text-align: justify;
@@ -269,43 +250,28 @@
             animation: typewriterMarker 0.8s ease-out 2.4s forwards;
         }
         
-        .section-title {
-            font-size: 1em;
-            font-weight: 500;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            letter-spacing: 0.05em;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 50%, transparent 50%);
-            background-size: 200% 100%;
-            background-position: 100% 0;
-            padding: 8px 15px;
-            display: inline-block;
-            animation: typewriterMarker 0.6s ease-out 2.6s forwards;
-        }
-        
-        .timeline {
-            font-size: 0.9em;
-            line-height: 1.9;
-            color: #ffffff;
+        ul {
+            list-style: none;
+            margin-top: 15px;
             background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 50%, transparent 50%);
             background-size: 200% 100%;
             background-position: 100% 0;
             padding: 10px 15px;
-            animation: typewriterMarker 0.8s ease-out 2.8s forwards;
+            animation: typewriterMarker 0.8s ease-out 2.6s forwards;
         }
         
-        .timeline-item {
-            display: flex;
-            margin-bottom: 8px;
+        li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+            font-size: 0.95em;
         }
         
-        .year {
-            min-width: 60px;
+        li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
             color: #e0e0e0;
-        }
-        
-        .description {
-            flex: 1;
         }
         
         @media (max-width: 768px) {
@@ -318,25 +284,18 @@
                 font-size: 1.2em;
             }
             
-            body {
-                padding: 20px 15px;
+            .container {
+                margin-left: 0;
+                padding: 60px 20px 40px 20px;
             }
             
             h1 {
                 font-size: 1.6em;
-                margin-bottom: 60px;
                 margin-top: 40px;
             }
             
-            .artist {
-                flex-direction: column;
-                margin-bottom: 100px;
-            }
-            
-            .artist-image {
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
+            .section {
+                padding-left: 20px;
             }
         }
     </style>
@@ -354,70 +313,38 @@
         <a href="index.html">Technetope</a>
     </div>
     
-    <h1>Artists</h1>
-    
-    <div class="artist">
-        <div class="artist-image">
-            <img src="sato.jpg" alt="佐藤翼" onerror="this.parentElement.innerHTML='Image: 佐藤翼'">
+    <div class="container">
+        <h1>Technical Ingenuity</h1>
+        
+        <div class="section">
+            <h2>Toio魔改造</h2>
+            <p>小型可動スピーカーとしてToioを改造し、群れとして動作するシステムを構築。各Toioは独立して動作しながらも、全体として有機的な群れの振る舞いを実現している。改造によって音響出力機能を追加し、移動と音の発生を同時に制御することで、視覚と聴覚の両面から生態系を表現する。</p>
         </div>
-        <div class="artist-content">
-            <h2>佐藤 翼 / Tsubasa Sato</h2>
-            <div class="bio">
-                人工生態系や腸内細菌の研究を通じて人と環境の関係を新たな視点から捉える研究を続けている。高校在学中に閉鎖生態系に関する論文を発表し、宇宙環境下での生命維持に関する研究に取り組む。大学ではNature to Tech, Tech to Nature.(2024)をテーマに複数のプロジェクトを推進している。主に宇宙環境における生命維持と地上の健康科学をつなげる研究を進めている。研究と並行して、宇宙素材開発やデバイス開発、友人とメディアアート制作にも携わる。岡山県出身。瀬戸内地域、横浜での暮らしを経て、2025年から湘南に住まいを移す。
-            </div>
-            <div class="section-title">経歴</div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="year">2024</span>
-                    <span class="description">慶應義塾大学 環境情報学部 入学</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="year">2024</span>
-                    <span class="description">先端生命科学研究所 腸内細菌グループ 所属</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="year">2023</span>
-                    <span class="description">閉鎖生態系に関する研究論文を発表</span>
-                </div>
-            </div>
+        
+        <div class="section">
+            <h2>音響制御</h2>
+            <p>各スピーカーが個別に音を発しながら、全体として調和のとれた音響空間を創出。30台のスピーカーが空間内を移動することで、音源の位置が常に変化し、観客を取り囲む立体的な音響体験を生み出す。群れの密度や動きに応じて音響パターンも変化し、生態系の状態を聴覚的に表現する。</p>
         </div>
-    </div>
-    
-    <div class="artist">
-        <div class="artist-image">
-            <img src="saito.jpg" alt="齋藤淳平" onerror="this.parentElement.innerHTML='Image: 齋藤淳平'">
+        
+        <div class="section">
+            <h2>Toioの制御</h2>
+            <p>複数のToioを協調制御し、群れとしての振る舞いを実現。各Toioは自身の位置情報と周囲のToioの位置を認識し、群れアルゴリズムに基づいて移動方向を決定する。この分散制御システムにより、中央集権的な制御なしに、自律的で有機的な群れの動きを創出している。</p>
         </div>
-        <div class="artist-content">
-            <h2>齋藤 淳平 / Junpei Saito</h2>
-            <div class="bio">
-                テクノロジーとアートの融合を追求するクリエイター。インタラクティブシステムの設計と実装を専門とし、人と機械の新しい関係性を探求している。Technetopeプロジェクトにおいては、群れの動作制御システムの開発を担当。複数のロボットが協調して動作する群知能システムの実装に取り組み、生物の本能的な振る舞いを機械によって再現する技術開発を行っている。
-            </div>
-            <div class="section-title">経歴</div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="year">2024</span>
-                    <span class="description">Technetopeプロジェクト 制御システム開発担当</span>
-                </div>
-            </div>
+        
+        <div class="section">
+            <h2>群れの動作</h2>
+            <p>人間の座標を信号として送ることで、群として動くToioたちは自分自身の座標を認識し、その座標で回避行動を取り大きかった群は小さな群に分かれる。しかし再び近くに来るタイミングがあればその群たちは再び繋がり群となる。このダイナミックな分離と統合のプロセスは、自然界の生物の群れ行動を模倣している。観客の存在は障害物として認識され、群れはそれを避けながらも、常に全体としての調和を保とうとする。</p>
         </div>
-    </div>
-    
-    <div class="artist">
-        <div class="artist-image">
-            <img src="shimizu.jpg" alt="清水孝輔" onerror="this.parentElement.innerHTML='Image: 清水孝輔'">
-        </div>
-        <div class="artist-content">
-            <h2>清水 孝輔 / Kosuke Shimizu</h2>
-            <div class="bio">
-                音響デザインとサウンドアートを探求するアーティスト。空間音響と視覚表現の統合に取り組み、聴覚と視覚が織りなす新しい体験のデザインを追求している。Technetopeプロジェクトにおいては、音響システムと視覚表現の設計を担当。30台のスピーカーが生み出す音響空間と、4つのテーマに沿った視覚表現を統合し、観客が生態系の一部となる体験をデザインしている。
-            </div>
-            <div class="section-title">経歴</div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="year">2024</span>
-                    <span class="description">Technetopeプロジェクト 音響・視覚システム開発担当</span>
-                </div>
-            </div>
+        
+        <div class="section">
+            <h2>視覚表現</h2>
+            <p>水面だけでなく4つのテーマにあった情景が映し出される。各テーマは異なる生態系を表現し、それぞれに適した視覚的・音響的環境を提供する。</p>
+            <ul>
+                <li>メダカ × 湖畔：静かな水面に映る光の揺らぎと、小さな生命の営み</li>
+                <li>イナゴ × 草原：風に揺れる草と、大地を覆う群れの躍動</li>
+                <li>鴨 × 秋空：広がる空と、季節の移ろいの中を渡る鳥たち</li>
+                <li>星 × 夜空：無限の宇宙空間に浮かぶ星々の静謐な運動</li>
+            </ul>
         </div>
     </div>
 </body>
