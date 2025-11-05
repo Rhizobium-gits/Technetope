@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Ingenuity - Technetope</title>
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud.png">
     <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.8s ease-in;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -299,6 +309,28 @@
             .section {
                 padding-left: 20px;
             }
+            
+            /* スマホ用背景最適化 */
+            body {
+                background-size: auto 100%;
+                background-position: center center;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* タブレット用背景最適化 */
+            body {
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            /* PC用背景最適化 */
+            body {
+                background-size: cover;
+                background-position: center center;
+            }
         }
     </style>
 </head>
@@ -349,5 +381,21 @@
             </ul>
         </div>
     </div>
+    
+    <script>
+        // 背景画像の読み込みを待つ
+        const bgImage = new Image();
+        bgImage.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud.png';
+        
+        bgImage.onload = function() {
+            // 画像が読み込まれたらbodyをフェードイン
+            document.body.classList.add('loaded');
+        };
+        
+        // エラーが発生した場合でもbodyを表示
+        bgImage.onerror = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
 </body>
 </html>
