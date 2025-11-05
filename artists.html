@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists - Technetope</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro', 'Yu Gothic Medium', '游ゴシック Medium', YuGothic, '游ゴシック体', 'Meiryo', sans-serif;
+            background-color: #ffffff;
+            background-image: url('https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud4.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #000000;
+            line-height: 1.9;
+            padding: 40px 20px 40px 80px;
+            max-width: 1000px;
+            margin: 0;
+            position: relative;
+        }
+        
+        .ripple-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .ripple {
+            position: absolute;
+            border: 0.2px solid #000000;
+            border-radius: 50%;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .ripple1 {
+            width: 100px;
+            height: 100px;
+            animation: rippleEffect 2s ease-out;
+        }
+        
+        .ripple2 {
+            width: 100px;
+            height: 100px;
+            animation: rippleEffect 2s ease-out 0.3s;
+        }
+        
+        .ripple3 {
+            width: 100px;
+            height: 100px;
+            animation: rippleEffect 2s ease-out 0.6s;
+        }
+        
+        @keyframes rippleEffect {
+            0% {
+                transform: translate(-50%, -50%) scale(0.1);
+                opacity: 0;
+            }
+            30% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(15);
+                opacity: 0;
+            }
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            pointer-events: none;
+            opacity: 0;
+            animation: overlayFadeIn 0.8s ease-in 1.5s forwards;
+            z-index: 0;
+        }
+        
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes overlayFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            z-index: 9999;
+            animation: ripple 1.5s ease-out forwards;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInOverlay 0.8s ease-in 1.5s forwards;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(30);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeInOverlay {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .logo, h1, .artist, .artist-image, .artist-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+        
+        .logo a {
+            font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', 'Yu Mincho', '游明朝', 'Times New Roman', serif;
+            font-size: 1.5em;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            font-weight: 300;
+            transition: opacity 0.3s;
+        }
+        
+        .logo a:hover {
+            opacity: 0.6;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 80px;
+            margin-top: 60px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+        
+        .artist {
+            margin-bottom: 120px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .artist-image {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(245, 245, 245, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666666;
+            font-size: 0.85em;
+        }
+        
+        .artist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .artist-content {
+            flex: 1;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+        
+        .bio {
+            margin-bottom: 30px;
+            font-size: 0.95em;
+            line-height: 2;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 1em;
+            font-weight: 500;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        
+        .timeline {
+            font-size: 0.9em;
+            line-height: 1.9;
+            color: #000000;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        
+        .year {
+            min-width: 60px;
+            color: #333333;
+        }
+        
+        .description {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                top: 20px;
+                left: 20px;
+            }
+            
+            .logo a {
+                font-size: 1.2em;
+            }
+            
+            body {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.6em;
+                margin-bottom: 60px;
+                margin-top: 40px;
+            }
+            
+            .artist {
+                flex-direction: column;
+                margin-bottom: 100px;
+            }
+            
+            .artist-image {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ripple-container">
+        <div class="ripple ripple1"></div>
+        <div class="ripple ripple2"></div>
+        <div class="ripple ripple3"></div>
+    </div>
+    
+    <div class="logo">
+        <a href="index.html">Technetope</a>
+    </div>
+    
+    <h1>Artists</h1>
+    
+    <div class="artist">
+        <div class="artist-image">
+            <img src="sato.jpg" alt="佐藤翼" onerror="this.parentElement.innerHTML='Image: 佐藤翼'">
+        </div>
+        <div class="artist-content">
+            <h2>佐藤 翼 / Tsubasa Sato</h2>
+            <div class="bio">
+                人工生態系や腸内細菌の研究を通じて人と環境の関係を新たな視点から捉える研究を続けている。高校在学中に閉鎖生態系に関する論文を発表し、宇宙環境下での生命維持に関する研究に取り組む。大学ではNature to Tech, Tech to Nature.(2024)をテーマに複数のプロジェクトを推進している。主に宇宙環境における生命維持と地上の健康科学をつなげる研究を進めている。研究と並行して、宇宙素材開発やデバイス開発、友人とメディアアート制作にも携わる。岡山県出身。瀬戸内地域、横浜での暮らしを経て、2025年から湘南に住まいを移す。
+            </div>
+            <div class="section-title">経歴</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">2024</span>
+                    <span class="description">慶應義塾大学 環境情報学部 入学</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2024</span>
+                    <span class="description">先端生命科学研究所 腸内細菌グループ 所属</span>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2023</span>
+                    <span class="description">閉鎖生態系に関する研究論文を発表</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="artist">
+        <div class="artist-image">
+            <img src="saito.jpg" alt="齋藤淳平" onerror="this.parentElement.innerHTML='Image: 齋藤淳平'">
+        </div>
+        <div class="artist-content">
+            <h2>齋藤 淳平 / Junpei Saito</h2>
+            <div class="bio">
+                テクノロジーとアートの融合を追求するクリエイター。インタラクティブシステムの設計と実装を専門とし、人と機械の新しい関係性を探求している。Technetopeプロジェクトにおいては、群れの動作制御システムの開発を担当。複数のロボットが協調して動作する群知能システムの実装に取り組み、生物の本能的な振る舞いを機械によって再現する技術開発を行っている。
+            </div>
+            <div class="section-title">経歴</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">2024</span>
+                    <span class="description">Technetopeプロジェクト 制御システム開発担当</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="artist">
+        <div class="artist-image">
+            <img src="shimizu.jpg" alt="清水孝輔" onerror="this.parentElement.innerHTML='Image: 清水孝輔'">
+        </div>
+        <div class="artist-content">
+            <h2>清水 孝輔 / Kosuke Shimizu</h2>
+            <div class="bio">
+                音響デザインとサウンドアートを探求するアーティスト。空間音響と視覚表現の統合に取り組み、聴覚と視覚が織りなす新しい体験のデザインを追求している。Technetopeプロジェクトにおいては、音響システムと視覚表現の設計を担当。30台のスピーカーが生み出す音響空間と、4つのテーマに沿った視覚表現を統合し、観客が生態系の一部となる体験をデザインしている。
+            </div>
+            <div class="section-title">経歴</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">2024</span>
+                    <span class="description">Technetopeプロジェクト 音響・視覚システム開発担当</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
