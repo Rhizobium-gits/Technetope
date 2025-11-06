@@ -49,7 +49,7 @@
         
         .ripple {
             position: absolute;
-            border: 0.05px solid #000000;
+            border: 0.01px solid #000000;
             border-radius: 50%;
             opacity: 0;
             top: 50%;
@@ -129,21 +129,6 @@
             }
         }
         
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            pointer-events: none;
-            z-index: 9999;
-            animation: ripple 1.5s ease-out forwards;
-        }
-        
         body::after {
             content: '';
             position: fixed;
@@ -156,17 +141,6 @@
             z-index: 1;
             opacity: 0;
             animation: fadeInOverlay 0.8s ease-in 1.5s forwards;
-        }
-        
-        @keyframes ripple {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(30);
-                opacity: 0;
-            }
         }
         
         @keyframes fadeInOverlay {
@@ -318,54 +292,147 @@
             flex: 1;
         }
         
+        /* スマホ用の最適化 (768px以下) */
         @media (max-width: 768px) {
+            body {
+                /* スマホでは縦長の背景を最適化 */
+                background-size: auto 100%;
+                background-position: center center;
+                background-attachment: scroll; /* スマホではスクロールに追従 */
+                padding: 20px 15px;
+                max-width: 100%;
+            }
+            
             .logo {
-                top: 20px;
-                left: 20px;
+                top: 15px;
+                left: 15px;
             }
             
             .logo a {
-                font-size: 1.2em;
-            }
-            
-            /* スマホ用背景最適化 */
-            body {
-                background-size: auto 100%;
-                background-position: center center;
-                padding: 20px 15px;
+                font-size: 1.1em;
+                /* タッチ操作しやすいように */
+                padding: 5px;
+                display: inline-block;
             }
             
             h1 {
-                font-size: 1.6em;
-                margin-bottom: 60px;
-                margin-top: 40px;
+                font-size: 1.5em;
+                margin-bottom: 50px;
+                margin-top: 50px;
+                padding: 6px 12px;
             }
             
             .artist {
                 flex-direction: column;
-                margin-bottom: 100px;
+                margin-bottom: 80px;
+                gap: 25px;
             }
             
             .artist-image {
                 width: 100%;
-                max-width: 300px;
+                max-width: 250px;
+                height: 250px;
                 margin: 0 auto;
             }
+            
+            h2 {
+                font-size: 1.3em;
+                margin-bottom: 20px;
+                padding: 6px 12px;
+            }
+            
+            .bio {
+                font-size: 0.9em;
+                line-height: 1.95;
+                padding: 8px 12px;
+            }
+            
+            .section-title {
+                font-size: 0.95em;
+                margin-top: 25px;
+                padding: 6px 12px;
+            }
+            
+            .timeline {
+                font-size: 0.85em;
+                padding: 8px 12px;
+            }
+            
+            .year {
+                min-width: 55px;
+                font-size: 0.95em;
+            }
         }
         
+        /* タブレット用の最適化 (769px〜1024px) */
         @media (min-width: 769px) and (max-width: 1024px) {
-            /* タブレット用背景最適化 */
+            body {
+                background-size: cover;
+                background-position: center center;
+                padding: 35px 25px 35px 70px;
+            }
+            
+            .logo {
+                top: 25px;
+                left: 25px;
+            }
+            
+            .logo a {
+                font-size: 1.35em;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 70px;
+            }
+            
+            .artist {
+                margin-bottom: 100px;
+                gap: 35px;
+            }
+            
+            .artist-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        /* PC大画面用の最適化 (1025px以上) */
+        @media (min-width: 1025px) {
             body {
                 background-size: cover;
                 background-position: center center;
             }
+            
+            /* より大きな画面では余白を増やす */
+            @media (min-width: 1400px) {
+                body {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+            }
         }
         
-        @media (min-width: 1025px) {
-            /* PC用背景最適化 */
+        /* 横向きスマホ用 */
+        @media (max-width: 768px) and (orientation: landscape) {
             body {
                 background-size: cover;
                 background-position: center center;
+            }
+            
+            h1 {
+                margin-top: 30px;
+                margin-bottom: 40px;
+            }
+            
+            .artist {
+                flex-direction: row;
+                margin-bottom: 60px;
+            }
+            
+            .artist-image {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
@@ -456,11 +523,9 @@
         bgImage.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud4.png';
         
         bgImage.onload = function() {
-            // 画像が読み込まれたらbodyをフェードイン
             document.body.classList.add('loaded');
         };
         
-        // エラーが発生した場合でもbodyを表示
         bgImage.onerror = function() {
             document.body.classList.add('loaded');
         };
