@@ -47,7 +47,7 @@
         
         .ripple {
             position: absolute;
-            border: 0.05px solid #000000;
+            border: 0.01px solid #000000;
             border-radius: 50%;
             opacity: 0;
             top: 50%;
@@ -127,21 +127,6 @@
             }
         }
         
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            pointer-events: none;
-            z-index: 9999;
-            animation: ripple 1.5s ease-out forwards;
-        }
-        
         body::after {
             content: '';
             position: fixed;
@@ -154,17 +139,6 @@
             z-index: 1;
             opacity: 0;
             animation: fadeInOverlay 0.8s ease-in 1.5s forwards;
-        }
-        
-        @keyframes ripple {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(30);
-                opacity: 0;
-            }
         }
         
         @keyframes fadeInOverlay {
@@ -284,50 +258,142 @@
             color: #e0e0e0;
         }
         
+        /* スマホ用の最適化 (768px以下) */
         @media (max-width: 768px) {
+            body {
+                /* スマホでは縦長の背景を最適化 */
+                background-size: auto 100%;
+                background-position: center center;
+                background-attachment: scroll;
+                padding: 20px 15px;
+            }
+            
             .logo {
-                top: 20px;
-                left: 20px;
+                top: 15px;
+                left: 15px;
             }
             
             .logo a {
-                font-size: 1.2em;
+                font-size: 1.1em;
+                /* タッチ操作しやすく */
+                padding: 5px;
+                display: inline-block;
             }
             
             .container {
                 margin-left: 0;
-                padding: 60px 20px 40px 20px;
+                padding: 60px 15px 40px 15px;
+                max-width: 100%;
             }
             
             h1 {
-                font-size: 1.6em;
-                margin-top: 40px;
+                font-size: 1.5em;
+                margin-top: 50px;
+                margin-bottom: 50px;
+                padding: 6px 12px;
             }
             
             .section {
                 padding-left: 20px;
+                margin-bottom: 40px;
+                border-left-width: 1.5px;
             }
             
-            /* スマホ用背景最適化 */
-            body {
-                background-size: auto 100%;
-                background-position: center center;
+            h2 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+                padding: 6px 12px;
+            }
+            
+            p {
+                font-size: 0.9em;
+                line-height: 1.95;
+                padding: 8px 12px;
+                margin-bottom: 12px;
+            }
+            
+            ul {
+                padding: 8px 12px;
+                margin-top: 12px;
+            }
+            
+            li {
+                font-size: 0.9em;
+                padding-left: 18px;
+                margin-bottom: 8px;
             }
         }
         
+        /* タブレット用の最適化 (769px〜1024px) */
         @media (min-width: 769px) and (max-width: 1024px) {
-            /* タブレット用背景最適化 */
+            body {
+                background-size: cover;
+                background-position: center center;
+                padding: 35px 20px;
+            }
+            
+            .logo {
+                top: 25px;
+                left: 25px;
+            }
+            
+            .logo a {
+                font-size: 1.35em;
+            }
+            
+            .container {
+                margin-left: 70px;
+                padding: 70px 35px 40px 35px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 55px;
+            }
+            
+            .section {
+                padding-left: 25px;
+                margin-bottom: 45px;
+            }
+        }
+        
+        /* PC大画面用の最適化 (1025px以上) */
+        @media (min-width: 1025px) {
             body {
                 background-size: cover;
                 background-position: center center;
             }
+            
+            @media (min-width: 1400px) {
+                .container {
+                    max-width: 850px;
+                }
+                
+                h1 {
+                    font-size: 2.3em;
+                }
+            }
         }
         
-        @media (min-width: 1025px) {
-            /* PC用背景最適化 */
+        /* 横向きスマホ用 */
+        @media (max-width: 768px) and (orientation: landscape) {
             body {
                 background-size: cover;
                 background-position: center center;
+            }
+            
+            .container {
+                padding: 40px 15px 30px 15px;
+            }
+            
+            h1 {
+                margin-top: 30px;
+                margin-bottom: 40px;
+                font-size: 1.4em;
+            }
+            
+            .section {
+                margin-bottom: 35px;
             }
         }
     </style>
@@ -372,10 +438,10 @@
             <h2>視覚表現</h2>
             <p>水面だけでなく4つのテーマにあった情景が映し出される。各テーマは異なる生態系を表現し、それぞれに適した視覚的・音響的環境を提供する。</p>
             <ul>
-                <li>メダカ × 湖畔：静かな水面に映る光の揺らぎと、小さな生命の営み</li>
-                <li>イナゴ × 草原：風に揺れる草と、大地を覆う群れの躍動</li>
-                <li>鴨 × 秋空：広がる空と、季節の移ろいの中を渡る鳥たち</li>
-                <li>星 × 夜空：無限の宇宙空間に浮かぶ星々の静謐な運動</li>
+                <li>メダカ × 湖畔:静かな水面に映る光の揺らぎと、小さな生命の営み</li>
+                <li>イナゴ × 草原:風に揺れる草と、大地を覆う群れの躍動</li>
+                <li>鴨 × 秋空:広がる空と、季節の移ろいの中を渡る鳥たち</li>
+                <li>星 × 夜空:無限の宇宙空間に浮かぶ星々の静謐な運動</li>
             </ul>
         </div>
     </div>
@@ -386,11 +452,9 @@
         bgImage.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud.png';
         
         bgImage.onload = function() {
-            // 画像が読み込まれたらbodyをフェードイン
             document.body.classList.add('loaded');
         };
         
-        // エラーが発生した場合でもbodyを表示
         bgImage.onerror = function() {
             document.body.classList.add('loaded');
         };
