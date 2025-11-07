@@ -435,6 +435,31 @@
                 height: 150px;
             }
         }
+
+
+        @import url('https://fonts.cdnfonts.com/css/bitcount-grid-single-ink');
+
+h1 {
+  font-family: 'Bitcount Grid Single Ink', monospace;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  transition: font-family 0.3s ease;
+}
+
+h1 span {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease, font-family 0.3s ease;
+  color: #000;
+}
+
+h1 span.changed {
+  font-family: 'Meiryo', sans-serif;
+  color: #222;
+  transform: scale(1.15);
+}
+        
     </style>
 </head>
 <body>
@@ -579,6 +604,37 @@
         bgImage.onerror = function() {
             document.body.classList.add('loaded');
         };
-    </script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const h1 = document.querySelector("h1");
+  const text = h1.textContent.trim();
+  h1.textContent = "";
+
+  // 各文字を span で囲む
+  const chars = text.split("");
+  chars.forEach(char => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    h1.appendChild(span);
+  });
+
+  const spans = Array.from(h1.querySelectorAll("span"));
+  const shuffled = spans.sort(() => Math.random() - 0.5);
+
+  // ランダムな順番でフォント切り替え
+  shuffled.forEach((span, i) => {
+    setTimeout(() => {
+      span.classList.add("changed");
+    }, i * 200 + Math.random() * 400);
+  });
+
+  // 最後に全体をメイリオ調に固定
+  setTimeout(() => {
+    h1.style.fontFamily = "'Meiryo', sans-serif";
+    spans.forEach(s => s.classList.add("changed"));
+  }, 4000);
+});
+</script>
+
 </body>
 </html>
