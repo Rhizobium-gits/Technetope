@@ -546,12 +546,14 @@
             return span;
         });
 
-        const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
-        order.forEach((i, index) => {
-            setTimeout(() => {
-                spans[i].classList.add("serif");
-            }, index * 250 + Math.random() * 300);
-        });
+        setTimeout(() => {
+            const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
+            order.forEach((i, index) => {
+                setTimeout(() => {
+                    spans[i].classList.add("serif");
+                }, index * 250 + Math.random() * 300);
+            });
+        }, 700);
     </script>
 </body>
 </html>
