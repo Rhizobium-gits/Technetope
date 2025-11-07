@@ -474,7 +474,6 @@
             <p>小さな生物にとって、人は流れてきた障害物であり、木の葉や浮き草、葦や大木のように回避すべき対象である。スピーカー群はその存在を本能のように察知し、分かれ、避け、再び群れを成す。この振る舞いが秩序となった生態系内で人間は唯一、本能ではなく意志を持ってシステムに参与してくる事象である。</p>
             
             <p>「Technetope」は、テクノロジーで生み出した生物が本能的に振る舞う非生命体群を形成して、を通じて、"テクノロジーによって生み出された生態系システムに人間が反秩序的に介入してくるが、その絶えず変化する作用に生態系の秩序が順応する瞬間"を描き出す試みである。それは自然と人工の二項対立を越え、人間・機械・環境が相互に生成し合う新たな生命観の原型を提示する。</p>
-            
         </section>
         
         <section class="words">
@@ -495,7 +494,6 @@
         </section>
     </div>
 
-    <!-- ✳️ Technetope のフォント変化アニメーション -->
     <style>
         header h1 {
             font-family: 'Meiryo', sans-serif;
@@ -508,21 +506,18 @@
 
         header h1 span {
             display: inline-block;
-            transition: all 0.5s ease;
+            transition: all 0.6s ease;
             font-family: 'Meiryo', sans-serif;
             color: #fff;
         }
 
         header h1 span.bit {
             font-family: 'Bitcount Grid Single Ink', monospace;
-            color: #0ff;
-            transform: scale(1.1);
-            text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+            transform: scale(1.05);
         }
     </style>
 
     <script>
-        // 背景ドット生成
         const dotsContainer = document.getElementById('dots');
         const dotCount = 30;
         for (let i = 0; i < dotCount; i++) {
@@ -535,13 +530,11 @@
             dotsContainer.appendChild(dot);
         }
 
-        // 背景画像のロード監視
         const bgImage = new Image();
         bgImage.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_claud3.png';
         bgImage.onload = () => document.body.classList.add('loaded');
         bgImage.onerror = () => document.body.classList.add('loaded');
 
-        // ✳️ Technetopeのランダムフォント変化
         const h1 = document.querySelector("header h1");
         const text = h1.textContent.trim();
         h1.textContent = "";
@@ -554,7 +547,6 @@
         });
 
         const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
-
         order.forEach((i, index) => {
             setTimeout(() => {
                 spans[i].classList.add("bit");
@@ -562,5 +554,4 @@
         });
     </script>
 </body>
-
 </html>
