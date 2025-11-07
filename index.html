@@ -82,7 +82,7 @@
         }
         
         .subtitle {
-            font-size: 0.9em;
+            font-size: 1.1em;
             letter-spacing: 0.3em;
             color: #888;
             opacity: 0;
@@ -450,85 +450,63 @@
             </p></a>
         </div>
 
-        <!DOCTYPE html>
-<html lang="ja">
-<head>
+
+
+
+
+
+
+
+
+        <header>
 <meta charset="UTF-8">
-<title>チカチカしながらバラバラ出てくるアニメーション</title>
+<title>Technetope</title>
 <style>
-  body {
-    background: #000;
-    color: #fff;
-    overflow: hidden;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.flicker-text span {
+  opacity: 0;
+  display: inline-block;
+  animation: flickerIn 1.2s ease forwards;
+}
 
-  .container {
-    position: relative;
-    width: 80%;
-    height: 200px;
-  }
-
-  .char {
-    position: absolute;
-    font-size: 2rem;
-    opacity: 0;
-    animation: flicker 0.3s infinite alternate;
-  }
-
-  @keyframes flicker {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
-  }
-
-  @keyframes moveIn {
-    0% {
-      transform: translate(var(--x), var(--y)) scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: translate(0, 0) scale(1);
-      opacity: 1;
-    }
-  }
+@keyframes flickerIn {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  30% { opacity: 0.3; }
+  50% { opacity: 1; }
+  70% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
 </style>
 </head>
 <body>
+  <header>
+    <h1>Technetope</h1>
+  </header>
 
-<div class="container" id="container"></div>
+  <script>
+  function animateFlickerText(selector, delayStep = 0.15) {
+    const el = document.querySelector(selector);
+    if (!el) return;
 
-<script>
-const text = "HELLO WORLD!";
-const container = document.getElementById("container");
+    const text = el.textContent.trim();
+    el.textContent = "";
 
-text.split("").forEach((ch, i) => {
-  const span = document.createElement("span");
-  span.textContent = ch;
-  span.classList.add("char");
+    text.split("").forEach((ch, i) => {
+      const span = document.createElement("span");
+      span.textContent = ch;
+      span.style.animationDelay = `${i * delayStep}s`;
+      el.appendChild(span);
+    });
 
-  // ランダムな初期位置
-  const randX = (Math.random() - 0.5) * 500 + "px";
-  const randY = (Math.random() - 0.5) * 300 + "px";
-  span.style.setProperty("--x", randX);
-  span.style.setProperty("--y", randY);
+    el.classList.add("flicker-text");
+  }
 
-  // ランダムな表示遅延
-  const delay = i * 0.2 + Math.random() * 0.5;
-  span.style.animation = `moveIn 1s ${delay}s ease-out forwards, flicker 0.2s infinite alternate`;
+  animateFlickerText("header h1");
 
-  container.appendChild(span);
-});
-</script>
-
-</body>
-</html>
 
         
-        <header>
-            <h1>Technetope</h1>
+
+
             <div class="subtitle">テクネトープ</div>
             <div class="theme">— 観客は環境の一部である —</div>
             <div class="video-container">
