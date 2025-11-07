@@ -177,8 +177,8 @@
 
     <header>
       <h1>Technetope</h1>
-      <div class="subtitle">テクネトープ</div><br>
-      <div class="subtitle2">- 観客は環境の一部である -</div>
+      <div class="subtitle">テクネトープ<br>
+      - 観客は環境の一部である -</div><br>
       <div class="video-container">
         <iframe width="800" height="450" src="https://www.youtube.com/embed/UVaZf3GliDs"
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -243,29 +243,6 @@
         setTimeout(() => { spans[i].classList.add("serif"); }, index * 250 + Math.random() * 300);
       });
     }, 1700);
-
-
-    // subtitle2用
-animateSubtitle(".subtitle2", 2500);
-
-function animateSubtitle(selector, delay) {
-  const subtitle = document.querySelector(selector);
-  if (!subtitle) return;
-  const text = subtitle.textContent.trim();
-  subtitle.textContent = "";
-  const spans = text.split("").map(ch => {
-    const span = document.createElement("span");
-    span.textContent = ch;
-    subtitle.appendChild(span);
-    return span;
-  });
-  setTimeout(() => {
-    const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
-    order.forEach((i, idx) => {
-      setTimeout(() => { spans[i].classList.add("serif"); }, idx * 180 + Math.random() * 200);
-    });
-  }, delay);
-}
     
     // subtitleエフェクト（DotGothic16→明朝）
     const subtitle = document.querySelector(".subtitle");
