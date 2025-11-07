@@ -1,5 +1,80 @@
 <!DOCTYPE html>
 <html lang="ja">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@100..900&display=swap" rel="stylesheet">
+
+<h1 id="animated-title">Artists</h1>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400&display=swap');
+
+/* Bitcount風フォントがないため、代替にmonospaceで近似 */
+@font-face {
+    font-family: 'BitcountGridSingleInk';
+    src: local('Courier New'), local('Consolas'), monospace;
+}
+
+/* 明朝体 */
+.modern-mincho {
+    font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', 'Yu Mincho', '游明朝', 'Noto Serif JP', serif;
+}
+
+/* タイトルの初期スタイル */
+#animated-title {
+    display: inline-block;
+    font-family: 'BitcountGridSingleInk';
+    font-size: 2em;
+    letter-spacing: 0.1em;
+    color: #000;
+    position: relative;
+}
+
+/* 各文字を独立制御するための基本設定 */
+#animated-title span {
+    display: inline-block;
+    transition: font-family 0.5s ease, transform 0.5s ease, color 0.5s ease;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const title = document.getElementById("animated-title");
+    const text = title.textContent;
+    title.textContent = "";
+
+    // 各文字をspanで包む
+    text.split("").forEach(char => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        title.appendChild(span);
+    });
+
+    const spans = Array.from(title.querySelectorAll("span"));
+    
+    // ランダムな順番でインデックスをシャッフル
+    const indices = spans.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    // 各文字にランダムな遅延でフォント変化
+    indices.forEach((index, i) => {
+        setTimeout(() => {
+            spans[index].classList.add("modern-mincho");
+            spans[index].style.transform = "scale(1.1)";
+            spans[index].style.color = "#000000";
+            setTimeout(() => {
+                spans[index].style.transform = "scale(1)";
+            }, 300);
+        }, 200 * i + Math.random() * 200);
+    });
+});
+</script>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
