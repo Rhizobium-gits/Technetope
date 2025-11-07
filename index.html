@@ -475,7 +475,6 @@
             
             <p>「Technetope」は、テクノロジーで生み出した生物が本能的に振る舞う非生命体群を形成して、を通じて、"テクノロジーによって生み出された生態系システムに人間が反秩序的に介入してくるが、その絶えず変化する作用に生態系の秩序が順応する瞬間"を描き出す試みである。それは自然と人工の二項対立を越え、人間・機械・環境が相互に生成し合う新たな生命観の原型を提示する。</p>
             
-            <p></p>
         </section>
         
         <section class="words">
@@ -484,7 +483,6 @@
             </p></div>
             
             <div class="quote-main">
-                
                 <em>L'homme est un roseau pensant</em><br>
                 人間は考える葦である
             </div>
@@ -496,12 +494,37 @@
             </div>
         </section>
     </div>
-    
+
+    <!-- ✳️ Technetope のフォント変化アニメーション -->
+    <style>
+        header h1 {
+            font-family: 'Meiryo', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 0.1em;
+            color: #fff;
+            margin: 0;
+            display: inline-block;
+        }
+
+        header h1 span {
+            display: inline-block;
+            transition: all 0.5s ease;
+            font-family: 'Meiryo', sans-serif;
+            color: #fff;
+        }
+
+        header h1 span.bit {
+            font-family: 'Bitcount Grid Single Ink', monospace;
+            color: #0ff;
+            transform: scale(1.1);
+            text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+        }
+    </style>
+
     <script>
-        // 背景にランダムに動くドットを生成
+        // 背景ドット生成
         const dotsContainer = document.getElementById('dots');
         const dotCount = 30;
-        
         for (let i = 0; i < dotCount; i++) {
             const dot = document.createElement('div');
             dot.className = 'dot';
@@ -511,20 +534,33 @@
             dot.style.animationDuration = (15 + Math.random() * 10) + 's';
             dotsContainer.appendChild(dot);
         }
-    </script>
-    
-    <script>
-        // 背景画像の読み込みを待つ
+
+        // 背景画像のロード監視
         const bgImage = new Image();
         bgImage.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_claud3.png';
-        
-        bgImage.onload = function() {
-            document.body.classList.add('loaded');
-        };
-        
-        bgImage.onerror = function() {
-            document.body.classList.add('loaded');
-        };
+        bgImage.onload = () => document.body.classList.add('loaded');
+        bgImage.onerror = () => document.body.classList.add('loaded');
+
+        // ✳️ Technetopeのランダムフォント変化
+        const h1 = document.querySelector("header h1");
+        const text = h1.textContent.trim();
+        h1.textContent = "";
+
+        const spans = text.split("").map(ch => {
+            const span = document.createElement("span");
+            span.textContent = ch;
+            h1.appendChild(span);
+            return span;
+        });
+
+        const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
+
+        order.forEach((i, index) => {
+            setTimeout(() => {
+                spans[i].classList.add("bit");
+            }, index * 250 + Math.random() * 300);
+        });
     </script>
 </body>
+
 </html>
