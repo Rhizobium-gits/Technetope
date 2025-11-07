@@ -459,54 +459,7 @@
 
 
         <header>
-<meta charset="UTF-8">
-<title>Technetope</title>
-<style>
-.flicker-text span {
-  opacity: 0;
-  display: inline-block;
-  animation: flickerIn 1.2s ease forwards;
-}
-
-@keyframes flickerIn {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  30% { opacity: 0.3; }
-  50% { opacity: 1; }
-  70% { opacity: 0.2; }
-  100% { opacity: 1; }
-}
-</style>
-</head>
-<body>
-  <header>
-    <h1>Technetope</h1>
-  </header>
-
-  <script>
-  function animateFlickerText(selector, delayStep = 0.15) {
-    const el = document.querySelector(selector);
-    if (!el) return;
-
-    const text = el.textContent.trim();
-    el.textContent = "";
-
-    text.split("").forEach((ch, i) => {
-      const span = document.createElement("span");
-      span.textContent = ch;
-      span.style.animationDelay = `${i * delayStep}s`;
-      el.appendChild(span);
-    });
-
-    el.classList.add("flicker-text");
-  }
-
-  animateFlickerText("header h1");
-
-
-        
-
-
+            <h1>Technetope<h1>
             <div class="subtitle">テクネトープ</div>
             <div class="theme">— 観客は環境の一部である —</div>
             <div class="video-container">
