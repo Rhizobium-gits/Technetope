@@ -496,7 +496,7 @@
 
     <style>
         header h1 {
-            font-family: 'Bitcount Grid Single Ink', sans-serif;
+            font-family: 'Bitcount Grid Single Ink', monospace;
             font-size: 4rem;
             letter-spacing: 0.1em;
             color: #fff;
@@ -507,12 +507,12 @@
         header h1 span {
             display: inline-block;
             transition: all 0.6s ease;
-            font-family: 'Bitcount Grid Single Ink', sans-serif;
+            font-family: 'Bitcount Grid Single Ink', monospace;
             color: #fff;
         }
 
-        header h1 span.bit {
-            font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', 'Yu Mincho', '游明朝', 'Times New Roman'', monospace;
+        header h1 span.serif {
+            font-family: "游明朝体", "Yu Mincho", "Hiragino Mincho ProN", serif;
             transform: scale(1.05);
         }
     </style>
@@ -549,7 +549,7 @@
         const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
         order.forEach((i, index) => {
             setTimeout(() => {
-                spans[i].classList.add("bit");
+                spans[i].classList.add("serif");
             }, index * 250 + Math.random() * 300);
         });
     </script>
