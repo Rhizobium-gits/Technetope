@@ -239,10 +239,28 @@
 
         
         /* 点滅 */
-.blinking{
-	-webkit-animation:blink 0.5s ease-in-out infinite alternate;
-    -moz-animation:blink 0.5s ease-in-out infinite alternate;
-    animation:blink 0.5s ease-in-out infinite alternate;
+.blinking1{
+	-webkit-animation:blink 0.8s ease-in-out infinite alternate;
+    -moz-animation:blink 0.8s ease-in-out infinite alternate;
+    animation:blink 0.8s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+		.blinking2{
+	-webkit-animation:blink 0.85s ease-in-out infinite alternate;
+    -moz-animation:blink 0.85s ease-in-out infinite alternate;
+    animation:blink 0.85s ease-in-out infinite alternate;
 }
 @-webkit-keyframes blink{
     0% {opacity:0;}
@@ -465,10 +483,10 @@
     <div class="container">
         <div class="nav-link">
             <a href="technical.html"><p class="bitcount-grid-single-ink">
-            <span class="blinking">Technical Ingenuity →</span>
+            <span class="blinking1">Technical Ingenuity →</span>
             </p></a>
             <a href="artists.html"><p class="bitcount-grid-single-ink">
-            <span class="blinking">Artists →</span>
+            <span class="blinking2">Artists →</span>
             </p></a>
         </div>
 
