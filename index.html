@@ -19,7 +19,7 @@
   <title>Technetope</title>
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_claud3.png">
   <style>
-  /* 全体スタイル・背景など */
+  /* 全体スタイル・背景など（変更なし） */
   body {
     opacity: 0;
     transition: opacity 0.8s ease-in;
@@ -177,8 +177,8 @@
 
     <header>
       <h1>Technetope</h1>
-      <div class="subtitle">テクネトープ</div><br><span>
-      <div class="subtitle">－ 観客は生態系の一部となる －</div>
+      <div class="subtitle">テクネトープ</div>
+      <div class="theme">— 観客は環境の一部である —</div>
       <div class="video-container">
         <iframe width="800" height="450" src="https://www.youtube.com/embed/UVaZf3GliDs"
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -243,7 +243,7 @@
         setTimeout(() => { spans[i].classList.add("serif"); }, index * 250 + Math.random() * 300);
       });
     }, 1700);
-    
+
     // subtitleエフェクト（DotGothic16→明朝）
     const subtitle = document.querySelector(".subtitle");
     const subText = subtitle.textContent.trim();
@@ -259,7 +259,7 @@
       order.forEach((i, idx) => {
         setTimeout(() => { subSpans[i].classList.add("serif"); }, idx * 180 + Math.random() * 200);
       });
-    }, 1950);
+    }, 2000);
   </script>
 </body>
 </html>
