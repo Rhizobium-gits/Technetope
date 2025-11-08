@@ -45,31 +45,6 @@
       max-width: var(--max-width);
     }
 
-
-    /* Typing風にビオを表示　*/
-    
-.typingText {
-  font-size: 50px;
-  color: white;
-  text-align: center;
-}
-
-/*文字の後ろにカーソルを追加*/
-.typingText::after {
-  content: "|";
-  color: white;
-  animation: blink 1s infinite; /*カーソル点滅アニメーション*/
-}
-
-/*カーソル点滅アニメーションの定義*/
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }    
-}
     /* 画面オーバーレイのアニメ */
     .ripple-container { position: fixed; top: 50%; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 5; }
     .ripple { position: absolute; border: 0.01px solid #000000; border-radius: 50%; opacity: 0; top: 50%; left: 50%; transform: translate(-50%, -50%); }
