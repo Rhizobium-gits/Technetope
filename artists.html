@@ -87,10 +87,11 @@
     .year { color: #e0e0e0; letter-spacing: 0.02em; }
     .description { overflow-wrap: anywhere; }
 
-    /* ===== モバイル最適化 ===== */
-    body.is-mobile { background-attachment: scroll; padding: 20px 16px; max-width: 100%; }
+    /* ===== モバイル最適化：クラスで切替 ===== */
+    body.is-mobile { background-attachment: scroll; /* iOSのパフォーマンス対策 */ padding: 20px 16px; max-width: 100%; }
     .is-mobile h1 { --h1-size: 1.9rem; margin: 48px 0 32px; letter-spacing: 0.03em; }
     .is-mobile h2 { --h2-size: 1.25rem; }
+
     .is-mobile .artist { flex-direction: column; gap: 16px; margin-bottom: 64px; }
     .is-mobile .artist-image { width: 100%; max-width: 520px; margin: 0 auto; border-width: 0.5px; }
     .is-mobile .bio { padding: 10px 12px; }
@@ -99,29 +100,19 @@
 
     .logo.is-dark a { color: #111; }
 
+    /* タブレット補正 */
     @media (max-width: 1024px) {
       body { padding: 40px 24px; max-width: 100%; }
       .artist-image { width: 200px; }
     }
+
+    /* スマホ幅の最終調整（JSのクラスに加えて保険）*/
     @media (max-width: 768px) {
       body { padding: 24px 16px; }
       .artist { flex-direction: column; gap: 16px; margin-bottom: 64px; }
       .artist-image { width: 100%; max-width: 520px; margin: 0 auto; }
       h1 { font-size: 2rem; margin: 48px 0 28px; }
       h2 { font-size: 1.25rem; }
-    }
-
-    /* --- タイプライター効果 --- */
-    .typewriter {
-      display: inline-block;
-      border-right: 2px solid #fff;
-      white-space: pre-wrap;
-      overflow: hidden;
-      animation: blink-caret 0.8s step-end infinite;
-    }
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: #fff; }
     }
   </style>
 </head>
@@ -148,7 +139,9 @@
     </div>
     <div class="artist-content">
       <h2>齋藤　淳平 / Jumpei　<b>SAITO</b></h2>
-      <div class="bio" id="saito-bio"></div>
+      <div class="bio">
+        2005年生まれ。小さい頃からモノづくりが好きで、ハードウェアを使った新たな体験を創ることに情熱を注ぐ。現在、燈 -Tomoshibi Technology- のリーダーを務めながら、慶應義塾大学理工学部情報工学科の鳴海研究室にて技術職員として活動。SFC-RGのArchに所属し、孫正義育英財団6期生(2022)、情報科学の達人4期生(2023)、MakersUniversity U18 8期生(2023)、未踏ジュニア(2023)、SecHack365(2025)など、様々な技術コミュニティに参加。ロボティクス、ハードウェア開発、新しいインタラクティブ体験の創出を中心に活動し、特にパフォーマティブロボティクスの分野において国際的なRoboCup大会での複数回の優勝実績を持つ。
+      </div>
       <div class="section-title">大会記録</div>
       <div class="timeline">
         <div class="timeline-item">
@@ -198,13 +191,7 @@
   <!-- 佐藤 翼 -->
   <div class="artist">
     <div class="artist-image">
-      <img src="https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/a1.jpg" alt="佐藤 翼" onerror続き（完全版の後半）です👇  
-この部分を前半コードの末尾にそのまま繋げてください。
-
----
-
-```html
-="this.parentElement.innerHTML='Image: 佐藤 翼'">
+      <img src="https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/a1.jpg" alt="佐藤 翼" onerror="this.parentElement.innerHTML='Image: 佐藤 翼'">
     </div>
     <div class="artist-content">
       <h2>佐藤　翼 / Tsubasa　<b>SATO</b></h2>
@@ -228,7 +215,7 @@
   </div>
 
   <script>
-    // === 端末識別 ===
+    // 端末識別：UAとビューポート幅からモバイルを推定し、クラスを切替
     function detectDevice() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isTouchWidth = window.matchMedia('(max-width: 768px)').matches;
@@ -236,18 +223,19 @@
       const mobile = isTouchWidth || isMobileUA;
       document.body.classList.toggle('is-mobile', mobile);
       document.body.classList.toggle('is-desktop', !mobile);
+      // 白背景の上に黒いテキストロゴを使う場合
       document.querySelector('.logo')?.classList.toggle('is-dark', mobile);
     }
     detectDevice();
     window.addEventListener('resize', () => { clearTimeout(window.__resTO); window.__resTO = setTimeout(detectDevice, 150); });
 
-    // === 背景画像プリロード ===
+    // 背景画像プリロード
     const bgImage = new Image();
     bgImage.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Technetope/main/figure/background_cloud4.png';
     bgImage.onload = () => document.body.classList.add('loaded');
     bgImage.onerror = () => document.body.classList.add('loaded');
 
-    // === h1エフェクト ===
+    // h1エフェクト Bitcount→明朝
     const h1 = document.querySelector('h1');
     const h1Text = h1.textContent.trim();
     h1.textContent = '';
@@ -262,7 +250,7 @@
       order.forEach((i, idx) => { setTimeout(() => { h1Spans[i].classList.add('serif'); }, idx * 250 + Math.random() * 300); });
     }, 1700);
 
-    // === h2エフェクト ===
+    // h2エフェクト DotGothic16→明朝
     const h2List = document.querySelectorAll('h2');
     h2List.forEach((h2, groupIndex) => {
       const text = h2.textContent.trim();
@@ -278,26 +266,6 @@
         order.forEach((i, idx) => { setTimeout(() => { spans[i].classList.add('serif'); }, idx * 200 + Math.random() * 200); });
       }, 2200 + groupIndex * 600);
     });
-
-    // === 齋藤淳平 bio タイプライター効果 ===
-    function typewriterEffect(element, text, speed = 35) {
-      let i = 0;
-      const type = () => {
-        if (i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, speed);
-        } else {
-          element.classList.remove('typewriter');
-        }
-      };
-      type();
-    }
-
-    const bioElement = document.getElementById("saito-bio");
-    const bioText = "2005年生まれ。小さい頃からモノづくりが好きで、ハードウェアを使った新たな体験を創ることに情熱を注ぐ。現在、燈 -Tomoshibi Technology- のリーダーを務めながら、慶應義塾大学理工学部情報工学科の鳴海研究室にて技術職員として活動。SFC-RGのArchに所属し、孫正義育英財団6期生(2022)、情報科学の達人4期生(2023)、MakersUniversity U18 8期生(2023)、未踏ジュニア(2023)、SecHack365(2025)など、様々な技術コミュニティに参加。ロボティクス、ハードウェア開発、新しいインタラクティブ体験の創出を中心に活動し、特にパフォーマティブロボティクスの分野において国際的なRoboCup大会での複数回の優勝実績を持つ。";
-    bioElement.classList.add("typewriter");
-    window.addEventListener("load", () => typewriterEffect(bioElement, bioText, 35));
   </script>
 </body>
 </html>
