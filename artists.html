@@ -45,6 +45,31 @@
       max-width: var(--max-width);
     }
 
+
+    /* Typing風にビオを表示　*/
+    
+.typingText {
+  font-size: 50px;
+  color: white;
+  text-align: center;
+}
+
+/*文字の後ろにカーソルを追加*/
+.typingText::after {
+  content: "|";
+  color: white;
+  animation: blink 1s infinite; /*カーソル点滅アニメーション*/
+}
+
+/*カーソル点滅アニメーションの定義*/
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }    
+}
     /* 画面オーバーレイのアニメ */
     .ripple-container { position: fixed; top: 50%; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 5; }
     .ripple { position: absolute; border: 0.01px solid #000000; border-radius: 50%; opacity: 0; top: 50%; left: 50%; transform: translate(-50%, -50%); }
@@ -195,9 +220,9 @@
     </div>
     <div class="artist-content">
       <h2>佐藤　翼 / Tsubasa　<b>SATO</b></h2>
-      <div class="bio">
+      <div class="bio"><p class="typingText">
         2006年生まれ。慶應義塾大学 環境情報学部に在学中(2025-現在)。2019年より、宇宙移住と背景とした縮小型人工閉鎖生態系の維持システムの構築に関する実験と地球外惑星の模擬土壌を用いた生存可能性に関する実験を行い、現在も地球生態系のバイオームの模倣に関する実験を継続している。2025年より慶應義塾大学 先端生命科学研究会 腸内細菌グループに所属し、低重力・過重力環境でのヒト腸内細菌叢の動態メカニズムに関する研究を行っている。また、東京科学大学(旧東京医科歯科大学)難治疾患研究所にて技術支援員として、時間列動態解析と深層学習モデル・細菌培養装置の開発に携わっている。学術活動以外では、ADvance Labの宇宙部門リーダーとして、将来の月面インフラのための水溶性月面コンクリート開発に取り組む。微生物学、システム生物学、有人宇宙学にまたがる学際的アプローチを積極的に行っている。Technetopeプロジェクトではプロジェクトの立案と生態系模倣監修と作品紹介を担当。
-      </div>
+      </p></div>
       <div class="section-title">論文/国際学会採択</div>
       <div class="timeline">
         <div class="timeline-item"><span class="year">2024</span><span class="description">Sato, T., Abe, K., Koseki, J. et al. Survivability and life support in sealed mini-ecosystems with simulated planetary soils. <i>Sci Rep</i> 14, 26322 (2024).</span></div>
