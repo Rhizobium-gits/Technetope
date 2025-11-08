@@ -180,6 +180,23 @@
       const order = spans.map((_,i)=>i).sort(()=>Math.random()-0.5);
       order.forEach((i,idx)=>{ setTimeout(()=>{ spans[i].classList.add('serif'); }, idx*250 + Math.random()*300); });
     },1700);
+
+    // h2エフェクト DotGothic16→明朝
+    const h2List = document.querySelectorAll('h2');
+    h2List.forEach((h2, groupIndex) => {
+      const text = h2.textContent.trim();
+      h2.textContent = '';
+      const spans = text.split('').map(ch => {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        h2.appendChild(span);
+        return span;
+      });
+      setTimeout(() => {
+        const order = spans.map((_, i) => i).sort(() => Math.random() - 0.5);
+        order.forEach((i, idx) => { setTimeout(() => { spans[i].classList.add('serif'); }, idx * 200 + Math.random() * 200); });
+      }, 2200 + groupIndex * 600);
+    });
   </script>
 </body>
 </html>
